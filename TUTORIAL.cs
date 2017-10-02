@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -109,8 +109,9 @@ public class TUTORIAL : MonoBehaviour {
 		{
 			exclama.SetActive (false); 
 			fundo.SetActive (false);
+			objetivos[0].isOn = true;
 		}
-
+			
 		if (other.gameObject.tag == "TutoAster") 
 		{
 			exclama.SetActive (false); 
@@ -145,16 +146,19 @@ public class TUTORIAL : MonoBehaviour {
 		{
 			exclama.SetActive (false); 
 			fundo.SetActive (false);
+
 		}
 		if (other.gameObject.tag == "TutoWebb") 
 		{
 			exclama.SetActive (false); 
 			fundo.SetActive (false);
+
 		}
 		if (other.gameObject.tag == "TutoKepler") 
 		{
 			exclama.SetActive (false); 
 			fundo.SetActive (false);
+
 		}
 		if (other.gameObject.tag == "TutoDawn") 
 		{
@@ -180,6 +184,7 @@ public class TUTORIAL : MonoBehaviour {
 		{
 			exclama.SetActive (false); 
 			fundo.SetActive (false);
+
 		}
 		if (other.gameObject.tag == "TutoSat") 
 		{
@@ -190,6 +195,13 @@ public class TUTORIAL : MonoBehaviour {
 		{
 			exclama.SetActive (false); 
 			fundo.SetActive (false);
+		}
+
+		if (other.gameObject.tag == "TutoAstro") 
+		{
+			exclama.SetActive (false); 
+			fundo.SetActive (false);
+
 		}
 
 	}
@@ -204,6 +216,12 @@ public class TUTORIAL : MonoBehaviour {
 			exclama.SetActive (false); 
 		}
 
+		if (other.gameObject.tag == "TutoScreen") 
+		{
+			exclama.SetActive (false); 
+			objetivos[6].isOn = true;
+		}
+
 
 		if (other.gameObject.tag == "TutoAster") {
 			exclama.SetActive (true); 
@@ -215,6 +233,19 @@ public class TUTORIAL : MonoBehaviour {
 				fundo.SetActive (true);
 			}
 		}
+
+		if (other.gameObject.tag == "TutoAstro") {
+			exclama.SetActive (true); 
+
+			if (Input.GetKeyDown (KeyCode.E)) {
+				barra.verticalNormalizedPosition = 1;
+				objetivos[3].isOn = true;
+				nomeObjeto.text = "Roupa Esopacial de Armstrong";
+				informa.text = "Representação do uniforme utilizado por Armstrong na espedição Apollo 11, a primeira a levar o homem em segurança até a Lua";
+				fundo.SetActive (true);
+			}
+		}
+
 		if (other.gameObject.tag == "TutoIkaros") {
 			exclama.SetActive (true); 
 			
@@ -315,6 +346,7 @@ public class TUTORIAL : MonoBehaviour {
 			
 			if (Input.GetKeyDown (KeyCode.E)) {
 				barra.verticalNormalizedPosition = 1;
+				objetivos[2].isOn = true;
 				nomeObjeto.text = "Telescópio Hubble";
 				informa.text = "Representação do Telescópio Espacial Hubble, um dos mais importantes telescópios da história da humanidade. Ele fica no espaço, longe da atmosfera terrestre, o que permite que ele consiga imagens precisas de lugares distantes no universo. Seu nome é uma homenagem à Edwin Powell Hubble, o homem que constatou que o universo estava se expandindo.";
 				if (falasMuseu [5].isPlaying && tocando == false) {
@@ -334,6 +366,7 @@ public class TUTORIAL : MonoBehaviour {
 			
 			if (Input.GetKeyDown (KeyCode.E)) {
 				barra.verticalNormalizedPosition = 1;
+				objetivos[4].isOn = true;
 				nomeObjeto.text = "Telescópio James Webb";
 				informa.text = "Representação do Telescópio Espacial James Webb. É o “sucessor” do telescópio Hubble, além de ser muito mais potente que o mesmo. Sua órbita final é no ponto de Lagrange L2, um ponto além da órbita da Lua, o que torna impossível a manutenção do telescópio, uma vez que é bem distante do ônibus espacial, consequentemente, seu tempo de vida útil é bem menor se comparado ao Hubble. Seu nome é uma homenagem à James Edwin Webb, um antigo administrador da agência espacial americana e que liderou o programa Apollo.";
 				if (falasMuseu [6].isPlaying && tocando == false) {
@@ -353,6 +386,7 @@ public class TUTORIAL : MonoBehaviour {
 			
 			if (Input.GetKeyDown (KeyCode.E)) {
 				barra.verticalNormalizedPosition = 1;
+				objetivos[5].isOn = true;
 				nomeObjeto.text = "Kepler";
 				informa.text = "Representação da sonda Kepler, um observatório espacial projetado pela NASA, cuja missão é procurar por planetas extra-solares. O telescópio foi responsável pela descoberta de diversos planetas, dentre eles: Kepler 10b, Kepler 16b, Kepler 22b e Kepler 20. A sonda teve problemas em seu problema de giroscópio e, consequentemente, não opera mais em sua função primária.";
 				if (falasMuseu [7].isPlaying && tocando == false) {
@@ -448,6 +482,7 @@ public class TUTORIAL : MonoBehaviour {
 			
 			if (Input.GetKeyDown (KeyCode.E)) {
 				barra.verticalNormalizedPosition = 1;
+				objetivos[1].isOn = true;
 				nomeObjeto.text = "Telescópio de Galileu";
 				informa.text = "Representação do Telescópio de Galileu, um telescópio que revolucionou a astronomia. Apesar de não ter sido o primeiro telescópio, era muito mais potente que qualquer aparelho de sua época, permitindo a Galileu realizar diversas descobertas, como a presença de crateras na Lua e que a Terra não era o centro do Universo.";
 				if (falasMuseu [12].isPlaying && tocando == false) {
