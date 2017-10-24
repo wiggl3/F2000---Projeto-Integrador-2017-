@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -24,7 +24,7 @@ public class OBJETIVOS : MonoBehaviour {
 		scale.y = Mathf.Lerp (scale.y,isOpen ? 1 : 0, Time.deltaTime * 12);
 		metas.localScale = scale;
 
-		if (Input.GetKeyDown (KeyCode.Q)) 
+		if (Input.GetKeyDown (KeyCode.Alpha2)) 
 		{
 			isOpen = !isOpen;
 		}
