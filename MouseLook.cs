@@ -1,4 +1,4 @@
-﻿//Este script vai na camera
+//Este script vai na camera
 using System;
 using UnityEngine;
 
