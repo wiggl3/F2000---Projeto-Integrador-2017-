@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.IO;
 using UnityEngine.SceneManagement;
@@ -50,7 +50,7 @@ public class Screenshot : MonoBehaviour {
 			screenshot.LoadImage(bytes);
 			tela.material.mainTexture = screenshot;
 		}*/
-		if (Input.GetKeyDown(KeyCode.P)){
+		if (Input.GetKeyDown(KeyCode.Alpha3)){
 
 			caminhoPasta = Application.persistentDataPath + "/screenshot" + contadorPrint.ToString()+".png"; 
 			Application.CaptureScreenshot(caminhoPasta);
@@ -58,7 +58,7 @@ public class Screenshot : MonoBehaviour {
 			if(contadorPrint>PlayerPrefs.GetInt("numeroPrint"))
 				PlayerPrefs.SetInt("numeroPrint",contadorPrint);
 		}
-		if(Input.GetKeyDown(KeyCode.N) /*&& SceneManager.GetActiveScene().name=="MuseuTutorial"*/){
+		if(Input.GetKeyDown(KeyCode.Alpha4) /*&& SceneManager.GetActiveScene().name=="MuseuTutorial"*/){
 			string arquivoNome = Path.Combine(Application.persistentDataPath, "screenshot" + contadorMostra.ToString()+".png");
 			byte[] bytes = System.IO.File.ReadAllBytes(arquivoNome);
 			screenshot = new Texture2D(0,0,TextureFormat.ASTC_RGB_12x12, false);
