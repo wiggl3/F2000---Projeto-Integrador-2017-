@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -8,29 +8,31 @@ public class INFORMACOES : MonoBehaviour {
 	//public GameObject [] textos;
 	[SerializeField] 
 	Text informa, nomeObjeto, nomeObjetivo; //texto onde aparecem as informacoes e texto que diz qual o objeto encontrado
-	[Space(20)]
+	[Space(10)]
 	[SerializeField] 
 	GameObject fundo;//pop-up das informacoes
-	[Space(20)]
+	[Space(10)]
 	[SerializeField]
 	GameObject exclama, objConcluido;//aviso de que ali ha alguma informacao
-	[Space(20)]
+	[Space(10)]
 	[SerializeField]
 	Toggle [] objetivos;
-	[Space(20)]
+	[Space(10)]
 	[SerializeField] 
 	AudioSource [] falas,falasRef,falasMuseu;
-	[Space(20)]
+	[Space(10)]
 	bool tocando = false;
-	[Space(20)]
+	[Space(10)]
 	float tempo=0,contaFala=0;
 	public int cont = 0;
 	int i=0;
 	[SerializeField]
 	AudioSource dialogoI;
-
+	[SerializeField]
+	ScrollRect barra;
 
 	CAMSCOPE cam;
+	Sinais sn;
 
 
 	// Use this for initialization
@@ -64,6 +66,7 @@ public class INFORMACOES : MonoBehaviour {
 			tempo=falasRef[i].clip.length;
 			Invoke ("trocaTocando",tempo);
 		}
+
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -94,15 +97,20 @@ public class INFORMACOES : MonoBehaviour {
 
 			if (Input.GetKeyDown (KeyCode.E))
 			{
+				barra.verticalNormalizedPosition = 1;
 				objetivos[0].isOn = true;
 				objConcluido.SetActive(true);
 				nomeObjetivo.text = "Missao ''Bandeira Americana'' concluida!";
 				nomeObjeto.text = "Bandeira Americana";
 				informa.text = "Bandeira dos Estados Unidos. Além de um objeto que demonstra a chegada do homem à lua, seu simbolismo é muito maior. A bandeira é um símbolo da corrida espacial e, consequentemente da Guerra Fria. Onde duas potências hegemônicas disputavam frequentemente, eram estas: Os Estados Unidos e a URSS. Não resumindo apenas sua disputa a terra, começaram uma corrida para quem lançava o primeiro homem ao espaço, posteriormente à Lua. Essa disputa tinha um objetivo, a nação que possuísse a maior tecnologia para os foguetes consequentemente também teria para os mísseis, demostrando assim possuir um potencial bélico maior. Sendo assim, muito mais do que uma representação da chegada do homem à lua, a bandeira é uma afirmação de que esse primeiro homem foi um americano e não um soviético.";
-				if(falas[0].isPlaying && tocando ==false){
+
+				if(falas[0].isPlaying && tocando ==false)
+				{
 					tocando=true;
 				}
-				else if(tocando==false){
+
+				else if(tocando==false)
+				{
 					tempo = falas[0].clip.length;
 					falas[0].Play();
 					tocando=true;
@@ -120,6 +128,7 @@ public class INFORMACOES : MonoBehaviour {
 
 			if (Input.GetKeyDown (KeyCode.E))
 			{
+				barra.verticalNormalizedPosition = 1;
 				objetivos[1].isOn = true;
 				objConcluido.SetActive(true);
 				nomeObjetivo.text = "Missao ''Pegada de Amstrong'' concluida!";
@@ -145,6 +154,7 @@ public class INFORMACOES : MonoBehaviour {
 
 			if (Input.GetKeyDown (KeyCode.E))
 			{
+				barra.verticalNormalizedPosition = 1;
 				objetivos[2].isOn = true;
 				objConcluido.SetActive(true);
 				nomeObjetivo.text = "Missao ''Surveyor 1'' concluida!";
@@ -170,6 +180,7 @@ public class INFORMACOES : MonoBehaviour {
 
 			if (Input.GetKeyDown (KeyCode.E))
 			{
+				barra.verticalNormalizedPosition = 1;
 				objetivos[3].isOn = true;
 				objConcluido.SetActive(true);
 				nomeObjetivo.text = "Missao ''Surveyor 3'' concluida!";
@@ -195,6 +206,7 @@ public class INFORMACOES : MonoBehaviour {
 
 			if (Input.GetKeyDown (KeyCode.E))
 			{
+				barra.verticalNormalizedPosition = 1;
 				objetivos[4].isOn = true;
 				objConcluido.SetActive(true);
 				nomeObjetivo.text = "Missao ''Surveyor 5'' concluida!";
@@ -220,6 +232,7 @@ public class INFORMACOES : MonoBehaviour {
 
 			if (Input.GetKeyDown (KeyCode.E))
 			{
+				barra.verticalNormalizedPosition = 1;
 				objetivos[5].isOn = true;
 				objConcluido.SetActive(true);
 				nomeObjetivo.text = "Missao ''Surveyor 6'' concluida!";
@@ -245,6 +258,7 @@ public class INFORMACOES : MonoBehaviour {
 
 			if (Input.GetKeyDown (KeyCode.E))
 			{
+				barra.verticalNormalizedPosition = 1;
 				objetivos[6].isOn = true;
 				objConcluido.SetActive(true);
 				nomeObjetivo.text = "Missao ''Surveyor 7'' concluida!";
@@ -270,6 +284,7 @@ public class INFORMACOES : MonoBehaviour {
 
 			if (Input.GetKeyDown (KeyCode.E))
 			{
+				barra.verticalNormalizedPosition = 1;
 				objetivos[7].isOn = true;
 				objConcluido.SetActive(true);
 				nomeObjetivo.text = "Missao ''Luna 9'' concluida!";
@@ -295,6 +310,7 @@ public class INFORMACOES : MonoBehaviour {
 
 			if (Input.GetKeyDown (KeyCode.E))
 			{
+				barra.verticalNormalizedPosition = 1;
 				objetivos[8].isOn = true;
 				objConcluido.SetActive(true);
 				nomeObjetivo.text = "Missao ''Luna 13'' concluida!";
@@ -320,6 +336,7 @@ public class INFORMACOES : MonoBehaviour {
 
 			if (Input.GetKeyDown (KeyCode.E))
 			{
+				barra.verticalNormalizedPosition = 1;
 				objetivos[9].isOn = true;
 				objConcluido.SetActive(true);
 				nomeObjetivo.text = "Missao ''Rover'' concluida!";
@@ -345,6 +362,7 @@ public class INFORMACOES : MonoBehaviour {
 
 			if (Input.GetKeyDown (KeyCode.E))
 			{
+				barra.verticalNormalizedPosition = 1;
 				objetivos[10].isOn = true;
 				objConcluido.SetActive(true);
 				nomeObjetivo.text = "Missao ''Cratera'' concluida!";
@@ -370,6 +388,7 @@ public class INFORMACOES : MonoBehaviour {
 
 			if (Input.GetKeyDown (KeyCode.E))//se apertar i e estiver dentro do range o texto abaixo aparece
 			{
+				barra.verticalNormalizedPosition = 1;
 				objetivos[11].isOn = true;
 				objConcluido.SetActive(true);
 				nomeObjetivo.text = "Missao ''Bacia Aitken'' concluida!";
