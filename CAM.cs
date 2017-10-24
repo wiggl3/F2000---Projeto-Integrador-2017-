@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class CAM : MonoBehaviour {
 
 	[SerializeField]Camera personaCam;
 	[SerializeField] private GameObject target;
-	[SerializeField] private float rotSpeed;
+	private float rotSpeed = 5;
+	public bool camSee = false;
 	Vector3 offset;
 
 	// Use this for initialization
@@ -20,7 +21,7 @@ public class CAM : MonoBehaviour {
 
 		Zoom ();
 
-		if (Input.GetMouseButton (2)) 
+		if (camSee == true) 
 		{
 			float horizontal = Input.GetAxis ("Mouse X") * rotSpeed;
 			target.transform.Rotate (0, horizontal, 0);
@@ -35,6 +36,16 @@ public class CAM : MonoBehaviour {
 			float desitedAngle1 = target.transform.eulerAngles.y;
 			Quaternion rotation1 = Quaternion.Euler (0, 0, desitedAngle1);
 			transform.position = target.transform.position - (rotation * offset);
+		}
+
+		if (Time.timeScale == 0) 
+		{
+			rotSpeed = 0;
+		}
+
+		else
+		{
+			rotSpeed = 5;
 		}
 
 		//transform.LookAt(target.transform.position);
