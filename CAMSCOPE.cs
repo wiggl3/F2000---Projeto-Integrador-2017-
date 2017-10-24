@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class CAMSCOPE : MonoBehaviour {
@@ -12,10 +12,12 @@ public class CAMSCOPE : MonoBehaviour {
 
 
 	PERSONAGEM persona;
+	TUTORIAL tuto;
 
 	// Use this for initialization
 	void Start () {
 		persona = FindObjectOfType<PERSONAGEM> ();
+		tuto = FindObjectOfType<TUTORIAL> ();
 
 		scopeSome.SetActive (false);
 		CamPerson.SetActive (true);
@@ -33,12 +35,16 @@ public class CAMSCOPE : MonoBehaviour {
 			persona.podeMover = false;
 		}
 
-		else 
+		if (telescopio == false) 
 		{
 			CamPerson.SetActive (true);
 			CamRadar.SetActive(true);
 			scopeSome.SetActive(false);
-			persona.podeMover = true;
+
+			if (tuto.cont >= 3) 
+			{
+				persona.podeMover = true;
+			}
 		}
 
 	}
