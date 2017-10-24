@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PERSONAGEM : MonoBehaviour {
 
@@ -10,8 +11,14 @@ public class PERSONAGEM : MonoBehaviour {
 	//public float vel;
 	DATA dt;
 	[SerializeField]AudioSource dialogo1;
+	[SerializeField]Text gameplayTimer;
+	[SerializeField]float timer;
+	[SerializeField]int minutes;
 	public bool podeMover = false;
     //int progress = 0;
+
+	CAM see;
+
 
 	// Use this for initialization
 	void Awake()
@@ -21,6 +28,8 @@ public class PERSONAGEM : MonoBehaviour {
 
 	void Start () 
 	{
+
+		see = FindObjectOfType<CAM> ();
 
 		rb = GetComponent<Rigidbody>();	
 
@@ -34,12 +43,24 @@ public class PERSONAGEM : MonoBehaviour {
 			//SceneManager.LoadScene(DATA.cena);
 			transform.position = new Vector3 (DATA.posX, DATA.posY, DATA.posZ);
 		}
+
+		gameplayTimer.text = gameplayTimer.ToString ();
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 		move ();
-		
+
+		timer += Time.deltaTime;
+
+		if (timer >= 60) 
+		{
+			minutes++;
+			timer =0;
+		}
+		gameplayTimer.text = minutes + ":" + timer.ToString ("f1");
+
 		DATA.posX = transform.position.x;
 		DATA.posY = transform.position.y;
 		DATA.posZ = transform.position.z;
@@ -64,8 +85,10 @@ public class PERSONAGEM : MonoBehaviour {
 	void move()
 	{
 
-		if (podeMover == true) 
-		{
+		if (podeMover == true) {
+
+			see.camSee = true;
+
 			if (Input.GetKey (KeyCode.W)) {
 				transform.Translate (0, 0, 5 * Time.deltaTime);
 				//rb.AddForce(transform.right * vel * Time.deltaTime);
@@ -81,7 +104,12 @@ public class PERSONAGEM : MonoBehaviour {
 				//rb.AddForce(transform.right * -vel * Time.deltaTime);
 			}
 
-		transform.eulerAngles += new Vector3 (0, Input.GetAxisRaw ("Horizontal") * Time.deltaTime*130, 0);
+			//transform.eulerAngles += new Vector3 (0, Input.GetAxisRaw ("Horizontal") * Time.deltaTime*130, 0);
+		} 
+
+		else
+		{
+			see.camSee = false;
 		}
 	}
 		
