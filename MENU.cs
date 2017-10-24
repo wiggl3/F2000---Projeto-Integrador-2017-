@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -30,8 +30,8 @@ public class MENU : MonoBehaviour {
 	void Start () {
 		dt = FindObjectOfType<DATA> ();
 		Opcoes (false);
-		ChecarResolucoes ();
-		AjustarQualidades ();
+		//ChecarResolucoes ();
+		//AjustarQualidades ();
 		//
 		if (PlayerPrefs.HasKey ("RESOLUCAO")) {
 			int numResoluc = PlayerPrefs.GetInt ("RESOLUCAO");
@@ -71,7 +71,7 @@ public class MENU : MonoBehaviour {
 			Screen.fullScreen = true;
 		}
 		//========RESOLUCOES========//
-		if (modoJanelaAtivo == 1) {
+		/*if (modoJanelaAtivo == 1) {
 			telaCheiaAtivada = false;
 		} else {
 			telaCheiaAtivada = true;
@@ -96,7 +96,7 @@ public class MENU : MonoBehaviour {
 			qualidadeGrafica = (QualitySettings.names.Length-1);
 			PlayerPrefs.SetInt ("qualidadeGrafica", qualidadeGrafica);
 			Qualidades.value = qualidadeGrafica;
-		}
+		}*/
 		// =========SETAR BOTOES==========//
 
 		BotaoJogar.onClick = new Button.ButtonClickedEvent();
@@ -115,7 +115,7 @@ public class MENU : MonoBehaviour {
 		BotaoSalvarPref.onClick.AddListener(() => SalvarPreferencias());
 	}
 	//=========VOIDS DE CHECAGEM==========//
-	private void ChecarResolucoes(){
+	/*private void ChecarResolucoes(){
 		Resolution[] resolucoesSuportadas = Screen.resolutions;
 		Resolucoes.options.Clear ();
 		for(int y = 0; y < resolucoesSuportadas.Length; y++){
@@ -123,15 +123,15 @@ public class MENU : MonoBehaviour {
 				resolucoesSuportadas[y].width + "x" + resolucoesSuportadas[y].height });
 		}
 		Resolucoes.captionText.text = "Resolucao";
-	}
-	private void AjustarQualidades(){
+	}*/
+	/*private void AjustarQualidades(){
 		string[] nomes = QualitySettings.names;
 		Qualidades.options.Clear ();
 		for(int y = 0; y < nomes.Length; y++){
 			Qualidades.options.Add(new Dropdown.OptionData() { text = nomes[y] });
 		}
 		Qualidades.captionText.text = "Qualidade";
-	}
+	}*/
 	private void Opcoes(bool ativarOP){
 		BotaoJogar.gameObject.SetActive (!ativarOP);
 		BotaoOpcoes.gameObject.SetActive (!ativarOP);
@@ -143,8 +143,8 @@ public class MENU : MonoBehaviour {
 		textoVol.gameObject.SetActive (ativarOP);
 		BarraVolume.gameObject.SetActive (ativarOP);
 		CaixaModoJanela.gameObject.SetActive (ativarOP);
-		Resolucoes.gameObject.SetActive (ativarOP);
-		Qualidades.gameObject.SetActive (ativarOP);
+		//Resolucoes.gameObject.SetActive (ativarOP);
+		//Qualidades.gameObject.SetActive (ativarOP);
 		BotaoVoltar.gameObject.SetActive (ativarOP);
 		BotaoSalvarPref.gameObject.SetActive (ativarOP);
 	}
@@ -158,16 +158,16 @@ public class MENU : MonoBehaviour {
 			telaCheiaAtivada = true;
 		}
 		PlayerPrefs.SetFloat ("VOLUME", BarraVolume.value);
-		PlayerPrefs.SetInt ("qualidadeGrafica", Qualidades.value);
+		//PlayerPrefs.SetInt ("qualidadeGrafica", Qualidades.value);
 		PlayerPrefs.SetInt ("modoJanela", modoJanelaAtivo);
-		PlayerPrefs.SetInt ("RESOLUCAO", Resolucoes.value);
-		resolucaoSalveIndex = Resolucoes.value;
+		//PlayerPrefs.SetInt ("RESOLUCAO", Resolucoes.value);
+		//resolucaoSalveIndex = Resolucoes.value;
 		AplicarPreferencias ();
 	}
 	private void AplicarPreferencias(){
 		VOLUME = PlayerPrefs.GetFloat ("VOLUME");
-		QualitySettings.SetQualityLevel(PlayerPrefs.GetInt ("qualidadeGrafica"));
-		Screen.SetResolution(resolucoesSuportadas[resolucaoSalveIndex].width,resolucoesSuportadas[resolucaoSalveIndex].height,telaCheiaAtivada);
+		//QualitySettings.SetQualityLevel(PlayerPrefs.GetInt ("qualidadeGrafica"));
+		//Screen.SetResolution(resolucoesSuportadas[resolucaoSalveIndex].width,resolucoesSuportadas[resolucaoSalveIndex].height,telaCheiaAtivada);
 	}
 	//===========VOIDS NORMAIS=========//
 	void Update(){
@@ -179,7 +179,7 @@ public class MENU : MonoBehaviour {
 	void Jogar()
 	{
 		dt.load = false;
-		SceneManager.LoadScene ("MuseuTutorial");
+	SceneManager.LoadScene (nomeCenaJogo);
 	}
 	void Sair(){
 		Application.Quit ();
