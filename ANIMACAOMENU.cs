@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class ANIMACAOMENU : MonoBehaviour {
@@ -23,7 +23,7 @@ public class ANIMACAOMENU : MonoBehaviour {
 			break;
 
 		case load.roda2:
-			transform.Rotate (new Vector3 (0, 0, -1.2f *100* Time.deltaTime));
+			transform.Rotate (new Vector3 (0, 0, 1.2f *100* Time.deltaTime));
 			break;
 
 		case load.roda3:
