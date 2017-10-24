@@ -15,7 +15,7 @@ public class TUTORIAL : MonoBehaviour {
 	GameObject fotos;
 
 	[SerializeField]
-	Button ok;
+	Button ok, follow;
 
 	[SerializeField]
 	GameObject painel;
@@ -25,31 +25,33 @@ public class TUTORIAL : MonoBehaviour {
 	[SerializeField] 
 	Text informa, nomeObjeto; //texto onde aparecem as informacoes e texto que diz qual o objeto encontrado
 
-	[Space(20)]
+	[Space(10)]
 	[SerializeField] 
 	GameObject fundo;//pop-up das informacoes
 
-	[Space(20)]
+	[Space(10)]
 	[SerializeField]
 	GameObject exclama;//aviso de que ali ha alguma informacao
 
-	[Space(20)]
+	[Space(10)]
 	[SerializeField]
 	Toggle [] objetivos;
 
-	[Space(20)]
+	[Space(10)]
 	[SerializeField] 
 	AudioSource [] falas,falasRef,falasMuseu;
 
-	[Space(20)]
+	[Space(10)]
 	bool tocando = false;
 
-	[Space(20)]
+	[Space(10)]
 	float tempo=0,contaFala=0;
 	int i=0;
 
 	PERSONAGEM persona;
 	CAMSCOPE cam;
+	CAM see;
+	CONTROLLER crtl;
 
 	[SerializeField]
 	ScrollRect barra;
@@ -58,9 +60,15 @@ public class TUTORIAL : MonoBehaviour {
 	void Start () {
 		persona = FindObjectOfType<PERSONAGEM> ();
 		cam = FindObjectOfType<CAMSCOPE> ();
+		see = FindObjectOfType<CAM> ();
+		crtl = FindObjectOfType<CONTROLLER> ();
 
 		ok.onClick = new Button.ButtonClickedEvent();
 		ok.onClick.AddListener(() => OkButton());
+
+		follow.onClick = new Button.ButtonClickedEvent();
+		follow.onClick.AddListener(() => Follow());
+
 		mouse.SetActive (true);
 	}
 	
@@ -82,16 +90,13 @@ public class TUTORIAL : MonoBehaviour {
 			fotos.SetActive (true);
 		}
 
-		if (cont >= 3) 
+		if (cont >= 3 || crtl.cont != 3) 
 		{
 			painel.SetActive(false);
 			persona.podeMover = true;
 		}
 
-		if (Input.GetKey(KeyCode.Return)) 
-		{
-			SceneManager.LoadScene("CENA");
-		}
+
 		
 	}
 
@@ -103,7 +108,11 @@ public class TUTORIAL : MonoBehaviour {
 	void OnTriggerExit(Collider other)//enquanto estiver dentro do range
 	{
 		//-----------TUTO-------------
-		
+
+		if (other.gameObject.tag == "TutoTerra") 
+		{
+			follow.gameObject.SetActive (false); 
+		}
 
 		if (other.gameObject.tag == "TutoScope")
 		{
@@ -210,6 +219,11 @@ public class TUTORIAL : MonoBehaviour {
 	void OnTriggerStay(Collider other)//enquanto estiver dentro do range
 	{
 		//-----------TUTO-------------
+
+		if (other.gameObject.tag == "TutoTerra") 
+		{
+			follow.gameObject.SetActive (true);  
+		}
 
 		if (other.gameObject.tag == "TutoScope") 
 		{
@@ -539,5 +553,10 @@ public class TUTORIAL : MonoBehaviour {
 	void trocaTocando(){
 		tocando = false;
 		contaFala=0;
+	}
+
+	void Follow()
+	{
+		SceneManager.LoadScene ("CENA");
 	}
 }
