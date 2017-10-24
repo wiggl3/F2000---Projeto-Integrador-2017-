@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -36,10 +36,10 @@ public class LOADING : MonoBehaviour {
 		switch (TipoDeCarregamento) 
 		{
 		case TipoCarreg.Carregamento:
-			StartCoroutine (CenaDeCarregamento ("CENA1"));
+			StartCoroutine (CenaDeCarregamento (CenaACarregar));
 			break;
 		case TipoCarreg.TempoFixo:
-			StartCoroutine (TempoFixo ("CENA1"));
+			StartCoroutine (TempoFixo (CenaACarregar));
 			break;
 		}
 		//
